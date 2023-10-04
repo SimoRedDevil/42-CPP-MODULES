@@ -10,8 +10,8 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = megaphone
-CPPFLAGS = -Wall -Wextra -Werror -std=c++98
+NAME = megaphone.exe
+CPPFLAGS = -Wall -Wextra -Werror
 SRC = megaphone.cpp
 OBJ = megaphone.o
 COMPILER = c++
@@ -25,7 +25,7 @@ $(NAME): $(OBJ)
 	$(COMPILER) $(CPPFLAGS) -c $<
 
 clean:
-	rm -rf $(OBJ)
+	del $(OBJ)
 fclean: clean
-	rm -rf $(NAME)
+	del $(NAME)
 re: clean fclean
