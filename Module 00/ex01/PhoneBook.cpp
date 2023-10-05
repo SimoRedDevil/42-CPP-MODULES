@@ -121,6 +121,8 @@ void PhoneBook::searchContact()
     HERE:
     std::cout << "Enter the contact index: ";
     std::getline(std::cin, str);
+    if (std::cin.eof())
+        std::exit(EXIT_FAILURE);
     index = std::atoi(str.c_str());
     if (index <= 0 || index > this->contactsCounter)
     {

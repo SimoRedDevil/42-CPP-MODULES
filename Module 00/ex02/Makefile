@@ -1,6 +1,6 @@
-NAME = phonebook
+NAME = account
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98
-SRCS = PhoneBook.cpp Contact.cpp main.cpp
+SRCS = Account.cpp tests.cpp
 OBJS = $(SRCS:.c=.o)
 COMPILER = c++
 
@@ -9,7 +9,7 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	$(COMPILER) $(CPPFLAGS) $(OBJS) -o $(NAME)
 
-%.o: %.cpp PhoneBook.hpp Contact.hpp
+%.o: %.cpp Account.hpp
 	$(COMPILER) $(CPPFLAGS) -c $<
 
 clean:

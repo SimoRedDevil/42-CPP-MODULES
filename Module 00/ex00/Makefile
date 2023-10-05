@@ -10,8 +10,8 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = megaphone.exe
-CPPFLAGS = -Wall -Wextra -Werror
+NAME = megaphone
+CPPFLAGS = -Wall -Wextra -Werror -std=c++98
 SRC = megaphone.cpp
 OBJ = megaphone.o
 COMPILER = c++
