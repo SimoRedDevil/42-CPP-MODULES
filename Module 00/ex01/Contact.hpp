@@ -1,37 +1,35 @@
-#pragma once
-
 #ifndef CONTACT_HPP
-#define CONTACT_HPP
+# define CONTACT_HPP
 
 #include <iostream>
 #include <string>
 
 class Contact
 {
-private:
-    std::string firstName;
-    std::string lastName;
-    std::string nickName;
-    std::string phoneNumber;
-    std::string darkestSecret;
-    int         index;
+    private:
+        int contactIndex;
+        std::string firstName;
+        std::string lastName;
+        std::string nickName;
+        std::string phoneNumber;
+        std::string darkestSecret;
+    public :
+        Contact(void);
+        ~Contact(void);
 
-public:
-    /*----------------Setters----------------*/
-    void setFirstName(std::string firstName);
-    void setLastName(std::string firstName);
-    void setNickName(std::string firstName);
-    void setPhoneNumber(std::string firstName);
-    void setDarkestSecret(std::string firstName);
-    void setIndex(int index);
-    
-    /*----------------Getters----------------*/
-    std::string getFirstName();
-    std::string getLastName();
-    std::string getNickName();
-    std::string getPhoneNumber();
-    std::string getDarkestSecret();
-    int         getIndex();
+        void setContactIndex(int index);
+        void setFirstName(std::string firstName);
+        void setLastName(std::string lastName);
+        void setNickName(std::string nickName);
+        void setPhoneNumber(std::string phoneNumber);
+        void setDarkestSecret(std::string darkestSecret);
+        
+        int getContactIndex(void);
+        std::string getFirstName(void);
+        std::string getLastName(void);
+        std::string getNickName(void);
+        std::string getPhoneNumber(void);
+        std::string getDarkestSecret(void);
 };
 
 #endif

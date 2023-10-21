@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mel-yous <mel-yous@student.42.fr>          +#+  +:+       +#+         #
+#    By: simo <simo@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/30 13:16:23 by mel-yous          #+#    #+#              #
-#    Updated: 2023/09/30 16:38:33 by mel-yous         ###   ########.fr        #
+#    Updated: 2023/10/18 17:38:39 by simo             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ $(NAME): $(OBJ)
 	$(COMPILER) $(CPPFLAGS) -c $<
 
 clean:
-	del $(OBJ)
+	rm -rf $(OBJ)
 fclean: clean
-	del $(NAME)
-re: clean fclean
+	rm -rf $(NAME)
+re: clean fclean all

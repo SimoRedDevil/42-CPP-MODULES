@@ -15,11 +15,11 @@ int main(void)
         if (line == "ADD")
             myPhoneBook.addContact();
         else if (line == "SEARCH")
-            myPhoneBook.searchContact();
+            myPhoneBook.search();
         else if (line == "EXIT")
-            myPhoneBook.exit();
+            myPhoneBook.exitProgram();
         else
-            std::exit(EXIT_FAILURE);
+            exit(EXIT_FAILURE);
     }
     return (0);
 }

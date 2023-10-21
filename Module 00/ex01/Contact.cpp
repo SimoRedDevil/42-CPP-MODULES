@@ -1,6 +1,20 @@
 #include "Contact.hpp"
+#include <stdio.h>
 
-#pragma region Setters
+Contact::Contact(void)
+{
+    /*NOTHING*/
+}
+Contact::~Contact(void)
+{
+    /*NOTHING*/
+}
+
+void Contact::setContactIndex(int index)
+{
+    contactIndex = index;
+}
+
 void Contact::setFirstName(std::string firstName)
 {
     this->firstName = firstName;
@@ -20,45 +34,38 @@ void Contact::setPhoneNumber(std::string phoneNumber)
 {
     this->phoneNumber = phoneNumber;
 }
+
 void Contact::setDarkestSecret(std::string darkestSecret)
 {
     this->darkestSecret = darkestSecret;
 }
 
-void Contact::setIndex(int index)
+int Contact::getContactIndex(void)
 {
-    this->index = index;
-}
-#pragma endregion
-
-#pragma region Getters
-std::string Contact::getFirstName()
-{
-    return this->firstName;
+    return contactIndex;
 }
 
-std::string Contact::getLastName()
+std::string Contact::getFirstName(void)
 {
-    return this->lastName;
+    return firstName;
 }
 
-std::string Contact::getNickName()
+std::string Contact::getLastName(void)
 {
-    return this->nickName;
+    return lastName;
 }
 
-std::string Contact::getPhoneNumber()
+std::string Contact::getNickName(void)
 {
-    return this->phoneNumber;
+    return nickName;
 }
 
-std::string Contact::getDarkestSecret()
+std::string Contact::getPhoneNumber(void)
 {
-    return this->darkestSecret;
+    return phoneNumber;
 }
 
-int Contact::getIndex()
+std::string Contact::getDarkestSecret(void)
 {
-    return this->index;
+    return darkestSecret;
 }
-#pragma endregion

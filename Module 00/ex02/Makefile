@@ -1,7 +1,7 @@
-NAME = account
+NAME = Account
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98
 SRCS = Account.cpp tests.cpp
-OBJS = $(SRCS:.c=.o)
+OBJS = $(SRCS:.cpp=.o)
 COMPILER = c++
 
 all: $(NAME)
@@ -13,7 +13,7 @@ $(NAME): $(OBJS)
 	$(COMPILER) $(CPPFLAGS) -c $<
 
 clean:
-	del $(OBJ)
+	rm -rf $(OBJS)
 fclean: clean
-	del $(NAME)
-re: clean fclean
+	rm -rf $(NAME)
+re: clean fclean all

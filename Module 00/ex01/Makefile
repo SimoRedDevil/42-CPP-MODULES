@@ -1,7 +1,8 @@
-NAME = phonebook
+NAME = Phonebook
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98
 SRCS = PhoneBook.cpp Contact.cpp main.cpp
-OBJS = $(SRCS:.c=.o)
+OBJS = $(SRCS:.cpp=.o)
+INC = Contact.hpp PhoneBook.hpp
 COMPILER = c++
 
 all: $(NAME)
@@ -9,11 +10,11 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	$(COMPILER) $(CPPFLAGS) $(OBJS) -o $(NAME)
 
-%.o: %.cpp PhoneBook.hpp Contact.hpp
+%.o: %.cpp $(INC)
 	$(COMPILER) $(CPPFLAGS) -c $<
 
 clean:
-	del $(OBJ)
+	rm -rf $(OBJS)
 fclean: clean
-	del $(NAME)
-re: clean fclean
+	rm -rf $(NAME)
+re: clean fclean all
