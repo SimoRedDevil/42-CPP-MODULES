@@ -1,8 +1,8 @@
-NAME = FragTrap
+NAME = DiamondTrap
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98
-SRCS = main.cpp ClapTrap.cpp ScavTrap.cpp FragTrap.cpp
+SRCS = main.cpp ClapTrap.cpp ScavTrap.cpp FragTrap.cpp DiamondTrap.cpp
 OBJS = $(SRCS:.cpp=.o)
-INC = ClapTrap.hpp ScavTrap.hpp FragTrap.hpp
+INC = ClapTrap.hpp ScavTrap.hpp FragTrap.hpp DiamondTrap.hpp
 COMPILER = c++
 
 all: $(NAME)
