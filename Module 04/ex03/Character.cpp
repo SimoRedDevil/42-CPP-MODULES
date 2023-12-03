@@ -3,7 +3,10 @@
 Character::Character(const std::string& _name) : name(_name)
 {
     for (int i = 0; i < 4; i++)
+    {
         this->slot[i] = NULL;
+        this->save[i] = NULL;
+    }
 }
 
 Character::Character(const Character& obj)
@@ -17,14 +20,18 @@ Character& Character::operator=(const Character& obj)
         return *this;
     this->name = obj.name;
     for (int i = 0; i < 4; i++)
+    {
+        if (this->save[i])
+            delete this->save[i];
         if (this->slot[i])
             delete this->slot[i];
+    }
     for (int i = 0; i < 4; i++)
     {
+        if (obj.save[i])
+            this->save[i] = obj.save[i]->clone();
         if (obj.slot[i])
             this->slot[i] = obj.slot[i]->clone();
-        else
-            this->slot[i] = NULL;
     }
     return *this;
 }
@@ -32,8 +39,12 @@ Character& Character::operator=(const Character& obj)
 Character::~Character()
 {
     for (int i = 0; i < 4; i++)
+    {   
+        if (this->save[i])
+            delete this->save[i];
         if (this->slot[i])
             delete this->slot[i];
+    }
 }
 
 std::string const& Character::getName() const
@@ -57,7 +68,7 @@ void Character::unequip(int idx)
 {
     if (idx < 0 || idx > 3 || !this->slot[idx])
         return;
-    AMateria *tmp = this->slot[idx];
+    this->save[idx] = this->slot[idx];
     this->slot[idx] = NULL;
 }
 
