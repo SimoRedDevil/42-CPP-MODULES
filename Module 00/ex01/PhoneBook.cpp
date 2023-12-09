@@ -1,27 +1,43 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   PhoneBook.cpp                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mel-yous <mel-yous@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/12/08 10:54:49 by mel-yous          #+#    #+#             */
+/*   Updated: 2023/12/08 15:27:20 by mel-yous         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "PhoneBook.hpp"
 
 PhoneBook::PhoneBook(void)
 {
-    counter = 0;
+    contactsCounter = 0;
 }
 
 PhoneBook::~PhoneBook(void)
 {
-    /*NOTHING*/
+
+}
+
+static bool isEmptyLine(const std::string& str)
+{
+    size_t i = 0;
+    while (i < str.length())
+    {
+        if (str[i] != 9 && str[i] != 32)
+            return false;
+        i++;
+    }
+    return true;
 }
 
 void PhoneBook::addContact(void)
 {
-    if (counter > 7)
-        counter = 7;
-    std::string str[5] =
-    {
-        "First Name: ",
-        "Last Name: ",
-        "Nick Name: ",
-        "Phone Number: ",
-        "Darkest Secret: "
-    };
+    static int index = 0;
+    std::string str[5] = {"First Name: ", "Last Name: ", "Nick Name: ", "Phone Number: ", "Darkest Secret: "};
     std::string input[5];
     for (int i = 0; i < 5; i++)
     {
@@ -29,20 +45,23 @@ void PhoneBook::addContact(void)
         std::getline(std::cin, input[i]);
         if (std::cin.eof())
             exitProgram();
-        if (input[i].empty())
+        if (input[i].empty() || isEmptyLine(input[i]))
         {
             std::cout << "Contact cannot have empty field\n";
             i--;
             continue;
         }
     }
-    contacts[counter].setContactIndex(counter);
-    contacts[counter].setFirstName(input[0]);
-    contacts[counter].setLastName(input[1]);
-    contacts[counter].setNickName(input[2]);
-    contacts[counter].setPhoneNumber(input[3]);
-    contacts[counter].setDarkestSecret(input[4]);
-    counter++;
+    index %= 8;
+    contacts[index].setContactIndex(index);
+    contacts[index].setFirstName(input[0]);
+    contacts[index].setLastName(input[1]);
+    contacts[index].setNickName(input[2]);
+    contacts[index].setPhoneNumber(input[3]);
+    contacts[index].setDarkestSecret(input[4]);
+    index++;
+    if (contactsCounter < 8)
+        contactsCounter++;
 }
 
 static std::string substring(std::string str)
@@ -54,7 +73,7 @@ static std::string substring(std::string str)
 
 void PhoneBook::showContacts(void)
 {
-    for (int i = 0; i < counter; i++)
+    for (int i = 0; i < contactsCounter; i++)
     {
         std::cout << i + 1 << std::setw(10) << "|"
             << substring(contacts[i].getFirstName())
@@ -67,6 +86,11 @@ void PhoneBook::showContacts(void)
 
 void PhoneBook::search(void)
 {
+    if (contactsCounter == 0)
+    {
+        std::cout << "Phonebook is empty!\n";
+        return; 
+    }
     showContacts();
     std::string index;
     std::cout << "Enter the index: ";
@@ -74,9 +98,9 @@ void PhoneBook::search(void)
     if (std::cin.eof())
         exitProgram();
     int i = atoi(index.c_str());
-    if (i <= 0 || i > 8)
+    if (i <= 0 || i > contactsCounter)
     {
-        std::cout << "Error: index out of range\n";
+        std::cout << "Error: invalid index!\n";
         return;
     }
     i--;
